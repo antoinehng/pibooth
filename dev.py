@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from . import *
+from pibooth.camera import Camera
 
 c = Camera()
 c.take_photo()
