@@ -34,6 +34,7 @@ class Camera(object):
         self.subprocess_pid = proc.pid
 
         try:
+            print("take photo")
             self.subprocess_out, self.subprocess_err = proc.communicate()
         except:
             print(self.subprocess_err)

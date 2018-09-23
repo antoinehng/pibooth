@@ -14,10 +14,7 @@ class Button(object):
         :param pin: The GPIO pin number for this button
         :type pin: int
         """
-        GPIO.cleanup()
-
         self.pin = int(pin)
-        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     @threaded
@@ -28,9 +25,9 @@ class Button(object):
         :type function: function
         """
         while True:
-            # waiting for GPIO button press
+            print("wait for button press")
             GPIO.wait_for_edge(self.pin, GPIO.FALLING) 
-            # execute function
+            print("button pressed")
             function()
 
 
