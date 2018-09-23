@@ -1,1 +1,3 @@
 RPi.GPIO
+Pillow
+Adafruit_Thermal
