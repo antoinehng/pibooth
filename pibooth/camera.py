@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-import os, subprocess
+import os, subprocess, time
 from datetime import datetime
 
 
@@ -22,7 +22,7 @@ class Camera(object):
         self.subprocess_out = None
         self.subprocess_err = None
     
-    def take_picture_with_countdown(self, countdown=int(3):
+    def take_picture_with_countdown(self, countdown=int(3)):
         """Take a single still photo after countdown
 
         :param countdown: Number of seconds to count down from
@@ -30,6 +30,7 @@ class Camera(object):
         """
         for count in reversed(range(countdown)):
             print(count+1)
+            time.sleep(1)
         self.take_picture()
 
     def take_picture(self):
