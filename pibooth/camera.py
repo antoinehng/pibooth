@@ -38,7 +38,7 @@ class Camera(object):
         output_image_path = os.path.join(self.output_directory_path, "img_"+str(datetime.now()).replace(" ", "_")+".jpg")
         command = ['raspistill',
                 '-n', # no preview
-                '-t', '500', # 500 ms before shutdown camera
+                '-t', '200', # 200 ms before shutdown camera
                 '-ex', 'auto', # auto exposure
                 '-e', 'jpg', # encoding jpg
                 '-q', '100', # jpg quality = 100
