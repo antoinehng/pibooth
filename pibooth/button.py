@@ -14,10 +14,8 @@ class Button(object):
         :param pin: The GPIO pin number for this button
         :type pin: int
         """
-        GPIO.cleanup()
-        GPIO.setmode(GPIO.BCM)
-
         self.pin = int(pin)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     @threaded
