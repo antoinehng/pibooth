@@ -24,7 +24,7 @@ class Camera(object):
     def take_photo(self):
         """Take a single still photo"""
 
-        output_image_path = os.path.join(self.output_directory_path, "img_"+str(datetime.now())+".jpg")
+        output_image_path = os.path.join(self.output_directory_path, "img_"+str(datetime.now()).replace(" ", "_")+".jpg")
         command = ['raspistill',
                 '-n', # no preview
                 '-ex', 'auto', # auto exposure
