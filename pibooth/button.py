@@ -30,7 +30,7 @@ class Button(object):
         :type function: function
         """
         while True:
-            time.sleep(.50)
+            time.sleep(.050) # 50ms debounce time
             if self._get_state() == 0:
                 function()
 
