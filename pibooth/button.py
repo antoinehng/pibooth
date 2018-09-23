@@ -29,10 +29,8 @@ class Button(object):
         :param function: The function to execute on button press
         :type function: function
         """
-        print("wait for button press")
         while True:
-            time.sleep(.100)
-            print(str(self._get_state()))
+            time.sleep(.50)
             if self._get_state() == 0:
                 function()
 
