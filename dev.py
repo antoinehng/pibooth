@@ -6,4 +6,4 @@ from pibooth.button import Button
 
 c = Camera()
 b = Button(18)
-b.on_press(c.take_photo)
+b.on_press(c.take_picture_with_countdown)
