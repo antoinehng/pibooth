@@ -32,6 +32,6 @@ class Button(object):
         while True:
             time.sleep(.050) # 50ms debounce time
             if self._get_state() == 0:
-                function()
+                yield function()
 
 
