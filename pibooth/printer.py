@@ -20,6 +20,7 @@ class Printer(object):
         :type timeout: int
         """
         self.device = Adafruit_Thermal(device, baud_rate, timeout=timeout)
+        self.print_size = 384, 288 # max_width=384
 
     def print_image(self, image_file_path):
         """Print Image
@@ -27,4 +28,10 @@ class Printer(object):
         :param image_file_path: Image file path
         :type image_file_path: str
         """
-        self.device.printImage(Image.open(image_file_path), True)
+
+        image_for_print_path = image_file_path+".print"
+        image_for_print = Image.open(image_file_path)
+        image_for_print.thumbnail(self.print_size, Image.ANTIALIAS)
+        image_for_print.save(image_for_print_path, "JPEG")
+
+        self.device.printImage(Image.open(image_for_print_path), True)
