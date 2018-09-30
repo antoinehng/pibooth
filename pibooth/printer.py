@@ -7,7 +7,7 @@ from Adafruit_Thermal import *
 class Printer(object):
     """This class represents the printer"""
 
-    def __init__(self, device, baud, timeout):
+    def __init__(self, device, baud_rate, timeout):
         """Printer initialization
         
         :param device: Device path
@@ -17,7 +17,7 @@ class Printer(object):
         :param timeout: Timeout in seconds
         :type timeout: int
         """
-        self.device = Adafruit_Thermal(device, baud, timeout=timeout)
+        self.device = Adafruit_Thermal(device, baud_rate, timeout=timeout)
 
     def print_image(self, image_file_path):
         """Print Image
