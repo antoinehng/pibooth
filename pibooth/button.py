@@ -24,7 +24,7 @@ class Button(object):
 
     @threaded
     def on_press(self, function, *args, **kwargs):
-        """Execute function on button press
+        """Execute function with args and kwargs on button press
 
         :param function: The function to execute on button press
         :type function: function
@@ -34,7 +34,8 @@ class Button(object):
         while True:
             time.sleep(.050) # 50ms debounce time
             if self._get_state() == 0:
-                yield function(*args, **kwargs)
                 #function(*args, **kwargs)
+                return_value = function(*args, **kwargs)
+                yield return_value
 
 
