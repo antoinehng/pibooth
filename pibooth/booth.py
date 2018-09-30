@@ -22,6 +22,7 @@ class Booth(object):
 
     def start(self):
         """Start booth"""
-        #for image_path in self.button.on_press(self.camera.take_picture_with_countdown(3)):
-        self.button.on_press(self.camera.take_picture_with_countdown)
-        #self.printer.print_image(image_path)
+        #self.button.on_press(self.camera.take_picture_with_countdown, 3)
+        for image_path in self.button.on_press(self.camera.take_picture_with_countdown, 3):
+            #self.printer.print_image(image_path)
+            print(image_path)

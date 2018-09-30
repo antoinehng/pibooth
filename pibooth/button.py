@@ -23,16 +23,18 @@ class Button(object):
         return GPIO.input(self.pin)
 
     @threaded
-    def on_press(self, function):
+    def on_press(self, function, *args, **kwargs):
         """Execute function on button press
 
         :param function: The function to execute on button press
         :type function: function
+        :param *args: args to be passed to function
+        :param **kwargs: kwargs to be passed to function
         """
         while True:
             time.sleep(.050) # 50ms debounce time
             if self._get_state() == 0:
-                #yield function()
-                function()
+                yield function(*args, **kwargs)
+                #function(*args, **kwargs)
 
 
