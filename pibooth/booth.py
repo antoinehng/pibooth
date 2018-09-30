@@ -24,6 +24,10 @@ class Booth(object):
         self.button = Button(18)
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 
+        self.event = {}
+        self.event['title'] = "HALO MAUD + YOLANDE BASHING"
+        self.event['place'] = "LA CAVE AUX POETES, ROUBAIX"
+
     def start(self):
         """Start booth"""
         self.button.on_press(self.image_path_queue, self.camera.take_picture_with_countdown)
@@ -31,4 +35,4 @@ class Booth(object):
         while True:
             if not self.image_path_queue.empty():
                 image_path = self.image_path_queue.get()
-                self.printer.print_image(image_path)
+                self.printer.print_image(image_path, event)
