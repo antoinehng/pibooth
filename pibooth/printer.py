@@ -42,9 +42,7 @@ class Printer(object):
         :type image_file_path: str
         """
         # print logo
-        self.device.feed(1)
         self.device.printImage(Image.open("/home/pi/pibooth/pibooth/config/logo.jpg"), True)
-        self.device.feed(1)
 
         self.device.justify('C')
 
@@ -66,11 +64,11 @@ class Printer(object):
         self.device.feed(1)
 
         # print text
-        self.device.print("LA CAVE AUX POETES, ROUBAIX")
-        self.device.feed(2)
+        self.device.println("LA CAVE AUX POETES, ROUBAIX")
+        self.device.feed(1)
 
         # line
-        self.device.println("————————————————————")
+        self.device.println("------------------------------")
 
         self.device.feed(1)
         self.device.boldOn()
@@ -89,7 +87,7 @@ class Printer(object):
         self.device.feed(1)
 
         # line
-        self.device.println("————————————————————")
+        self.device.println("------------------------------")
 
 
 
