@@ -58,9 +58,9 @@ class Printer(object):
         # print picture
         image_for_print_path = image_file_path+".print"
         image_for_print = Image.open(image_file_path) # create proxy image for print
-        #image_for_print = image_for_print.transpose(Image.ROTATE_90) # rotate image
+        image_for_print = image_for_print.transpose(Image.ROTATE_180) # rotate image
         w, h = image_for_print.size
-        image_for_print = image_for_print.crop(0, int((h-w)/2), 0, int((h-w)/2))
+        image_for_print.crop((int((w-h)/2), 0, int((w-h)/2), 0))
         image_for_print.thumbnail(self.print_size, Image.ANTIALIAS) # resize
         image_for_print.save(image_for_print_path, "JPEG") # save
         self.device.printImage(Image.open(image_for_print_path), True)
