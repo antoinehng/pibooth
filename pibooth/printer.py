@@ -22,7 +22,6 @@ class Printer(object):
         self.print_size = 384, 512 # max_width=384 
 
         self.device = Adafruit_Thermal(device, baud_rate, timeout=timeout)
-        self._calibrate()
     
     def _calibrate(self):
         for i in range(0,256,15):
