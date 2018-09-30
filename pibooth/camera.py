@@ -31,7 +31,7 @@ class Camera(object):
         for count in reversed(range(int(countdown))):
             print(count+1)
             time.sleep(1)
-        self.take_picture()
+        return self.take_picture()
 
     def take_picture(self):
         """Take a single still photo"""

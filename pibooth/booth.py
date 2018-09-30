@@ -1,5 +1,7 @@
 # -*- coding: utf8 -*-
 
+from Queue import Queue
+
 from .camera import Camera
 from .button import Button
 from .printer import Printer
@@ -16,13 +18,19 @@ class Booth(object):
         """
         self.config_file_path = config_file_path
 
+        self.image_path_queue=Queue(maxsize=1)
+
         self.camera = Camera()
         self.button = Button(18)
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 
     def start(self):
         """Start booth"""
-        #self.button.on_press(self.camera.take_picture_with_countdown, 3)
-        for image_path in self.button.on_press(self.camera.take_picture_with_countdown, 3):
-            #self.printer.print_image(image_path)
-            print(image_path)
+        self.button.on_press(self.image_path_queue, self.camera.take_picture_with_countdown)
+        
+        while True:
+            if not self.image_path_queue.empty():
+                image_path = self.image_path_queue.get()
+                print(image_path)
+                self.printer.print_image(image_path)
+

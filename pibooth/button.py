@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+from Queue import Queue
 import RPi.GPIO as GPIO
 import time
 
@@ -23,7 +24,7 @@ class Button(object):
         return GPIO.input(self.pin)
 
     @threaded
-    def on_press(self, function, *args, **kwargs):
+    def on_press(self, return_value_queue, output_queue, function, *args, **kwargs):
         """Execute function with args and kwargs on button press
 
         :param function: The function to execute on button press
@@ -34,8 +35,6 @@ class Button(object):
         while True:
             time.sleep(.050) # 50ms debounce time
             if self._get_state() == 0:
-                #function(*args, **kwargs)
-                return_value = function(*args, **kwargs)
-                yield return_value
+                return_value_queue.put(function(*args, **kwargs))
 
 
