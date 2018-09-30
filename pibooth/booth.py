@@ -31,6 +31,4 @@ class Booth(object):
         while True:
             if not self.image_path_queue.empty():
                 image_path = self.image_path_queue.get()
-                print(image_path)
                 self.printer.print_image(image_path)
-
