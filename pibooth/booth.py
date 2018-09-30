@@ -18,7 +18,7 @@ class Booth(object):
 
         self.camera = Camera()
         self.button = Button(18)
-        self.printer = Printer("/dev/serial0", 9600, 5")
+        self.printer = Printer("/dev/ttyUSB0", 9600, 5")
 
     def start(self):
         """Start booth"""
