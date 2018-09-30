@@ -70,9 +70,7 @@ class Printer(object):
         self.device.feed(2)
 
         # line
-        self.device.strikeOn()
-        self.device.print("     ")
-        self.device.strikeOff()
+        self.device.println("————————————————————")
 
         self.device.feed(1)
         self.device.boldOn()
@@ -89,9 +87,7 @@ class Printer(object):
         self.device.feed(1)
 
         # line
-        self.device.strikeOn()
-        self.device.print("     ")
-        self.device.strikeOff()
+        self.device.println("————————————————————")
 
 
 
