@@ -43,16 +43,16 @@ class Printer(object):
         """
         # print logo
         self.device.feed(1)
-        self.device.printImage(Image.open("/home/pi/pibooth/config/logo.png"), True)
+        self.device.printImage(Image.open("/home/pi/pibooth/pibooth/config/logo.jpg"), True)
         self.device.feed(1)
 
         self.device.justify('C')
 
         self.device.doubleHeightOn()
-        self.device.print("HALO MAUD + YOLANDE BASHING")
+        self.device.println("HALO MAUD + YOLANDE BASHING")
 
         self.device.doubleHeightOff()
-        self.device.print("2018-11-12 21:08:44") # time
+        self.device.println("2018-11-12 21:08:44") # time
 
         self.device.feed(1)
 
@@ -67,7 +67,7 @@ class Printer(object):
 
         # print text
         self.device.print("LA CAVE AUX POETES, ROUBAIX")
-        self.device.feed(3)
+        self.device.feed(2)
 
         # line
         self.device.strikeOn()
@@ -76,18 +76,18 @@ class Printer(object):
 
         self.device.feed(1)
         self.device.boldOn()
-        self.device.print("partagez votre")
-        self.device.print("photo avec le code")
+        self.device.println("partagez votre")
+        self.device.println("photo avec le code")
         self.device.boldOff()
         self.device.doubleHeightOn()
-        self.device.print("C0D3")
+        self.device.println("C0D3")
         self.device.doubleHeightOff()
         self.device.boldOn()
-        self.device.print("sur")
+        self.device.println("sur")
         self.device.boldOff()
-        self.device.print("shootomatic.net")
+        self.device.println("shootomatic.net")
         self.device.feed(1)
-        
+
         # line
         self.device.strikeOn()
         self.device.print("     ")
