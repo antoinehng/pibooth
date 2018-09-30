@@ -24,7 +24,7 @@ class Button(object):
         return GPIO.input(self.pin)
 
     @threaded
-    def on_press(self, return_value_queue, output_queue, function, *args, **kwargs):
+    def on_press(self, return_value_queue, function, *args, **kwargs):
         """Execute function with args and kwargs on button press
 
         :param function: The function to execute on button press
