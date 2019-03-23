@@ -40,13 +40,12 @@ class Camera(object):
             print(count+1)
             if count>0:
                 # all countdown numbers
-                self.flash.on(timeout=0.5)
-                time.sleep(0.5)
+                self.flash.on(timeout=0.5, release=0.5)
             else:
                 # Last countdown
-                for i in range(4):
-                    self.flash.on(timeout=0.25)
-                    time.sleep(0.25)
+                self.flash.on(timeout=0.125, release=0.25)
+                self.flash.on(timeout=0.125, release=0.25)
+                self.flash.on(timeout=0.125, release=0.125)
         
         self.flash.on()
         output_image_path= self.take_picture()
