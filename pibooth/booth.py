@@ -28,6 +28,7 @@ class Booth(object):
         self.event = {}
         self.event['title'] = "HALO MAUD + YOLANDE BASHING"
         self.event['place'] = "LA CAVE AUX POETES, ROUBAIX"
+        self.event['logo'] = "/home/pi/pibooth/pibooth/config/logo.jpg"
 
     def start(self):
         """Start booth"""

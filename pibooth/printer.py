@@ -43,7 +43,7 @@ class Printer(object):
         :type image_file_path: str
         """
         # print logo
-        self.device.printImage(Image.open("/home/pi/pibooth/pibooth/config/logo.jpg"), True)
+        self.device.printImage(Image.open(event["logo"]), True)
 
         self.device.justify('C')
 
