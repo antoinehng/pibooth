@@ -15,7 +15,7 @@ from .ftp import FtpClient
 class Booth(object):
     """This class represents the booth"""
 
-    def __init__(self), config_file_path:
+    def __init__(self, config_file_path):
         """Booth initialization"""
         self.image_path_queue = Queue(maxsize=1)
         self.config = self._get_config_from_file(config_file_path)
