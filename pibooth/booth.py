@@ -9,6 +9,8 @@ from .button import Button
 from .printer import Printer
 from .relay import Relay
 
+CONFIG_FILE_PATH = "/home/pi/pibooth/pibooth/config/event.json"
+
 
 class Booth(object):
     """This class represents the booth"""
@@ -26,7 +28,8 @@ class Booth(object):
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 
     def _set_event_info(self):
-        self.event = json.load("/home/pi/pibooth/pibooth/config/event.json")
+        with open(CONFIG_FILE_PATH) as config_file:  
+            self.event = json.load(config_file)
 
     def start(self):
         """Start booth"""
