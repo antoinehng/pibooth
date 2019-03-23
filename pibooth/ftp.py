@@ -1,20 +1,17 @@
 # -*- coding: utf8 -*-
 
+import os
 import ftplib
 
 
-class FTPClient(object):
+class FtpClient(object):
     """This class is the FTP Client"""
 
     def __init__(self, ftp_config):
         """FTP Client initialization
 
-        :param host: FTP Host address
-        :type host: str
-        :param username: Account username
-        :type username: str
-        :param password: Account password
-        :type password: str
+        :param ftp_config: FTP config containning host, username, password and dir
+        :type ftp_config: dict
         """
         self.host = ftp_config.get("host")
         self.username = ftp_config.get("username")
@@ -29,14 +26,15 @@ class FTPClient(object):
         :param destination_dir: Distant destination dir
         :type destination_dir: str
         """
-        self.session = ftplib.FTP(ftp_config.get("host"), ftp_config.get("username"), ftp_config.get("password"))
+        self.session = ftplib.FTP(self.host, self.username, self.password)
 
         if destination_dir:
             self.session.cwd(destination_dir)
         else:
             self.session.cwd(self.dir)
         
+        filename = os.path.basename(source_file_path)
         file = open(source_file_path,'rb')
-        self.session.storbinary('STOR TEST.jpg', file)
+        self.session.storbinary('STOR {}'.format(filename), file)
         file.close()
         self.session.quit()
