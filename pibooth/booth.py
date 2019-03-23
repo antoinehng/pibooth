@@ -2,6 +2,7 @@
 
 import RPi.GPIO as GPIO
 from Queue import Queue
+import json
 
 from .camera import Camera
 from .button import Button
@@ -25,10 +26,7 @@ class Booth(object):
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
     
     def _set_event_info(self):
-        self.event = {}
-        self.event['title'] = "HALO MAUD + YOLANDE BASHING"
-        self.event['place'] = "LA CAVE AUX POETES, ROUBAIX"
-        self.event['logo'] = "/home/pi/pibooth/pibooth/config/logo.jpg"
+        self.event = json.load("/home/pi/pibooth/pibooth/config/event.json")
 
     def start(self):
         """Start booth"""
