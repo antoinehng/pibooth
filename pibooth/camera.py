@@ -7,7 +7,7 @@ from datetime import datetime
 class Camera(object):
     """This class represents the pi camera"""
 
-    def __init__(self, output_directory_path=os.getcwd()):
+    def __init__(self, output_directory_path=os.getcwd(), flash=None):
         """Camera initialization
 
         :param output_directory_path: The output directory path
@@ -30,7 +30,14 @@ class Camera(object):
         """
         for count in reversed(range(int(countdown))):
             print(count+1)
-            time.sleep(1)
+            if self.flash:
+                print("flash on")
+                self.flash.close()
+                time.sleep(.5)
+                self.flash.open()
+                print("flash off")
+            else:
+                time.sleep(1)
         return self.take_picture()
 
     def take_picture(self):

@@ -5,6 +5,7 @@ from Queue import Queue
 from .camera import Camera
 from .button import Button
 from .printer import Printer
+from .relay import Relay
 
 
 class Booth(object):
@@ -20,7 +21,8 @@ class Booth(object):
 
         self.image_path_queue=Queue(maxsize=1)
 
-        self.camera = Camera()
+        self.relay = Button(23)
+        self.camera = Camera(flash=self.relay)
         self.button = Button(18)
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 
