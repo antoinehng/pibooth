@@ -12,21 +12,19 @@ from .relay import Relay
 class Booth(object):
     """This class represents the booth"""
 
-    def __init__(self, config_file_path=None):
-        """Booth initialization
-        
-        :param config_file_path: Config json file path
-        :type config_file_path: str
-        """
-        self.config_file_path = config_file_path
-
+    def __init__(self):
+        """Booth initialization"""
         self.image_path_queue=Queue(maxsize=1)
+        self._set_devices()
+        self._set_event_info()
 
+    def _set_devices(self):
         self.flash = Relay(23)
         self.camera = Camera(flash=self.flash)
         self.button = Button(18)
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
-
+    
+    def _set_event_info(self):
         self.event = {}
         self.event['title'] = "HALO MAUD + YOLANDE BASHING"
         self.event['place'] = "LA CAVE AUX POETES, ROUBAIX"
@@ -39,7 +37,7 @@ class Booth(object):
             while True:
                 if not self.image_path_queue.empty():
                     image_path = self.image_path_queue.get()
-                    #self.printer.print_image(image_path, self.event)
+                    self.printer.print_image(image_path, self.event)
         
         except KeyboardInterrupt:
             GPIO.cleanup()
