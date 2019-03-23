@@ -1,0 +1,13 @@
+{
+    "event":{
+        "title":"HALO MAUD + YOLANDE BASHING",
+        "place":"LA CAVE AUX POETES, ROUBAIX",
+        "logo":"/home/pi/pibooth/pibooth/config/logo.jpg"
+    },
+    "ftp": {
+        "host":"xxx",
+        "username":"xxx",
+        "password":"xxx",
+        "dir":"xxx"
+    }
+}

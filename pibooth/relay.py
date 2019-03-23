@@ -3,8 +3,6 @@
 import RPi.GPIO as GPIO
 import time
 
-from . import threaded
-
 
 class Relay(object):
     """This class represents the relay"""
