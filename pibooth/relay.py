@@ -18,7 +18,7 @@ class Relay(object):
         self.pin = int(pin)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.OUT)
-        self.open()
+        self._open()
 
     def _open(self):
         """Open the relay"""
