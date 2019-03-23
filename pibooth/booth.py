@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+import RPi.GPIO as GPIO
 from Queue import Queue
 
 from .camera import Camera
@@ -32,9 +33,14 @@ class Booth(object):
 
     def start(self):
         """Start booth"""
-        self.button.on_press(self.image_path_queue, self.camera.take_picture_with_countdown)
+        try:
+            self.button.on_press(self.image_path_queue, self.camera.take_picture_with_countdown)
         
-        while True:
-            if not self.image_path_queue.empty():
-                image_path = self.image_path_queue.get()
-                self.printer.print_image(image_path, self.event)
+            while True:
+                if not self.image_path_queue.empty():
+                    image_path = self.image_path_queue.get()
+                    #self.printer.print_image(image_path, self.event)
+        
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+        GPIO.cleanup()
