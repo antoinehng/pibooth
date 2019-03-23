@@ -33,8 +33,6 @@ class Button(object):
         :param **kwargs: kwargs to be passed to function
         """
         while True:
-            time.sleep(.050) # 50ms debounce time
+            time.sleep(.050)  # 50ms debounce time
             if self._get_state() == 0:
                 return_value_queue.put(function(*args, **kwargs))
-
-

@@ -22,11 +22,11 @@ class Relay(object):
 
     def _open(self):
         """Open the relay"""
-        GPIO.output(self.pin,1)
+        GPIO.output(self.pin, 1)
 
     def _close(self):
         """Close the relay"""
-        GPIO.output(self.pin,0)
+        GPIO.output(self.pin, 0)
 
     def on(self, timeout=None, release=None):
         """Turn On
@@ -42,7 +42,6 @@ class Relay(object):
             self._open()
         if release:
             time.sleep(release)
-        
 
     def off(self):
         self._open()
