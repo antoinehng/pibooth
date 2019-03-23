@@ -11,20 +11,18 @@ from .printer import Printer
 from .relay import Relay
 from .ftp import FtpClient
 
-CONFIG_FILE_PATH = "/home/pi/pibooth/config/config.json"
-
 
 class Booth(object):
     """This class represents the booth"""
 
-    def __init__(self):
+    def __init__(self), config_file_path:
         """Booth initialization"""
         self.image_path_queue = Queue(maxsize=1)
-        self.config = self._get_config_from_file()
+        self.config = self._get_config_from_file(config_file_path)
         self._init_devices()
 
-    def _get_config_from_file(self):
-        with open(CONFIG_FILE_PATH) as config_file:
+    def _get_config_from_file(self, config_file_path):
+        with open(config_file_path) as config_file:
             return json.load(config_file)
     
     def _init_devices(self):
