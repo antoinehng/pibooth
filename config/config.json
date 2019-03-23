@@ -11,7 +11,7 @@
     "event":{
         "title": "HALO MAUD + YOLANDE BASHING",
         "place": "LA CAVE AUX POETES, ROUBAIX",
-        "logo": "/home/pi/pibooth/pibooth/config/logo.jpg"
+        "logo": "/home/pi/pibooth/config/logo.jpg"
     },
     "ftp": {
         "host": "xxx",

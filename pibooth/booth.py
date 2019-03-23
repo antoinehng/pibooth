@@ -11,7 +11,7 @@ from .printer import Printer
 from .relay import Relay
 from .ftp import FtpClient
 
-CONFIG_FILE_PATH = "/home/pi/pibooth/pibooth/config/config.json"
+CONFIG_FILE_PATH = "/home/pi/pibooth/config/config.json"
 
 
 class Booth(object):
