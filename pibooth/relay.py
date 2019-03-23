@@ -20,12 +20,24 @@ class Relay(object):
         GPIO.setup(self.pin, GPIO.OUT)
         self.open()
 
-    def open(self):
+    def _open(self):
         """Open the relay"""
         GPIO.output(self.pin,1)
 
-    def close(self):
+    def _close(self):
         """Close the relay"""
         GPIO.output(self.pin,0)
 
+    def on(self, timeout=None):
+        """Turn On
 
+        :param timeout: If defined, keep on for the timeout time and then turn off
+        :type timeout: float
+        """
+        self._close()
+        if timeout:
+            time.sleep(timeout)
+            self._open()
+
+    def off(self):
+        self._open()

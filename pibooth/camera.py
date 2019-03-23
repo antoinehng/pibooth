@@ -35,11 +35,8 @@ class Camera(object):
         for count in reversed(range(int(countdown))):
             print(count+1)
             if self.flash:
-                print("flash on")
-                self.flash.close()
-                time.sleep(.5)
-                self.flash.open()
-                print("flash off")
+                self.flash.on(timeout=0.5)
+                time.sleep(0.5)
             else:
                 time.sleep(1)
         return self.take_picture()
