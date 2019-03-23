@@ -32,14 +32,27 @@ class Camera(object):
         :param countdown: Number of seconds to count down from
         :type countdown: int
         """
+        if not self.flash:
+            time.sleep(1)
+            return self.take_picture()
+
         for count in reversed(range(int(countdown))):
             print(count+1)
-            if self.flash:
+            if count>0:
+                # all countdown numbers
                 self.flash.on(timeout=0.5)
                 time.sleep(0.5)
             else:
-                time.sleep(1)
-        return self.take_picture()
+                # Last countdown
+                for i in range(4):
+                    self.flash.on(timeout=0.25)
+                    time.sleep(0.25)
+        
+        self.flash.on()
+        output_image_path= self.take_picture()
+        self.flash.off()
+
+        return output_image_path
 
     def take_picture(self):
         """Take a single still photo"""
