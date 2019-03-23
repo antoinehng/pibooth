@@ -32,9 +32,9 @@ class FtpClient(object):
             self.session.cwd(destination_dir)
         else:
             self.session.cwd(self.dir)
-        
+
         filename = os.path.basename(source_file_path)
-        file = open(source_file_path,'rb')
-        self.session.storbinary('STOR {}'.format(filename), file)
+        file = open(source_file_path, "rb")
+        self.session.storbinary("STOR {}".format(filename), file)
         file.close()
         self.session.quit()

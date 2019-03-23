@@ -20,21 +20,25 @@ class Booth(object):
     def __init__(self):
         """Booth initialization"""
         self.image_path_queue = Queue(maxsize=1)
+        self.config = self._get_config_from_file()
         self._init_devices()
-        self._get_config_from_file()
-
-    def _init_devices(self):
-        self.flash = Relay(23)
-        self.camera = Camera(flash=self.flash)
-        self.button = Button(18)
-        self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 
     def _get_config_from_file(self):
-        with open(CONFIG_FILE_PATH) as config_file:  
-            self.config = json.load(config_file)
+        with open(CONFIG_FILE_PATH) as config_file:
+            return json.load(config_file)
+    
+    def _init_devices(self):
+        self.flash = Relay(self.config["gpio"]["flash"])
+        self.camera = Camera(flash=self.flash)
+        self.button = Button(self.config["gpio"]["button"])
+        self.printer = Printer(
+            self.config["printer"]["usb_device"],
+            self.config["printer"]["baud_rate"],
+            self.config["printer"]["timeout"],
+        )
 
     def start(self):
-        """Start booth"""
+        """Start booth daemon"""
         try:
             self.button.on_press(
                 self.image_path_queue, self.camera.take_picture_with_countdown
@@ -45,10 +49,15 @@ class Booth(object):
                     image_path = self.image_path_queue.get()
 
                     self.printer.print_image(image_path, self.config["event"])
-                    
-                    ftp = FtpClient(self.config["ftp"])
-                    ftp.upload(image_path) 
-                    
+
+                    try:
+                        ftp = FtpClient(self.config["ftp"])
+                        ftp.upload(image_path)
+                    except:
+                        print(
+                            "Something went wrong, but do not want to break the booth flow"
+                        )
+
                     os.remove(image_path)
 
         except KeyboardInterrupt:
