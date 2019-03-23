@@ -21,8 +21,8 @@ class Booth(object):
 
         self.image_path_queue=Queue(maxsize=1)
 
-        self.relay = Button(23)
-        self.camera = Camera(flash=self.relay)
+        self.flash = Relay(23)
+        self.camera = Camera(flash=self.flash)
         self.button = Button(18)
         self.printer = Printer("/dev/ttyUSB0", 9600, 5)
 

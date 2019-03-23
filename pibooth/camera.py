@@ -12,6 +12,8 @@ class Camera(object):
 
         :param output_directory_path: The output directory path
         :type output_directory_path: str
+        :param flash: The relay object managing the flash
+        :type flash: Relay
         """
         if os.path.isdir(output_directory_path) is True:
             self.output_directory_path = output_directory_path
@@ -21,6 +23,8 @@ class Camera(object):
         self.subprocess_pid = None
         self.subprocess_out = None
         self.subprocess_err = None
+
+        self.flash = flash
     
     def take_picture_with_countdown(self, countdown=3):
         """Take a single still photo after countdown
